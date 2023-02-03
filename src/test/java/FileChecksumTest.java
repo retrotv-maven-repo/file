@@ -1,7 +1,4 @@
-import dev.retrotv.file.checksum.FileChecksum;
-import dev.retrotv.file.checksum.MD5Checksum;
-import dev.retrotv.file.checksum.SHA1Checksum;
-import dev.retrotv.file.checksum.SHA256Checksum;
+import dev.retrotv.file.checksum.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -16,6 +13,46 @@ import static org.junit.jupiter.api.Assertions.*;
 public class FileChecksumTest {
     private static final Logger logger = LoggerFactory.getLogger(FileChecksumTest.class);
     private final URL resource = this.getClass().getClassLoader().getResource("Usb_connectors.JPG");
+
+    @Test
+    @DisplayName("CRC32 getChecksum 테스트")
+    void crc32GetChecksum() {
+        File file = null;
+        try {
+            file = new File(resource.toURI());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        FileChecksum fc = new CRC32Checksum();
+        String hash = fc.getChecksum(file);
+
+        logger.debug("hash 값: " + hash);
+
+        assertNotNull(hash);
+    }
+
+    @Test
+    @DisplayName("CRC32 matches 테스트")
+    void crc32Matches() {
+        File file = null;
+        try {
+            file = new File(resource.toURI());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        FileChecksum fc = new CRC32Checksum();
+        String checksum = fc.getChecksum(file);
+
+        logger.debug("checksum: " + checksum);
+        assertNotNull(checksum);
+
+        boolean isSameFile = fc.matches(file, checksum);
+        logger.debug("same file: " + isSameFile);
+
+        assertTrue(isSameFile);
+    }
 
     @Test
     @DisplayName("MD5 getChecksum 테스트")
