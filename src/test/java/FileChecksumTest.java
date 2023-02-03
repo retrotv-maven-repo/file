@@ -173,4 +173,44 @@ public class FileChecksumTest {
 
         assertTrue(isSameFile);
     }
+
+    @Test
+    @DisplayName("SHA512 getChecksum 테스트")
+    void sha512GetChecksum() {
+        File file = null;
+        try {
+            file = new File(resource.toURI());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        FileChecksum fc = new SHA512Checksum();
+        String hash = fc.getChecksum(file);
+
+        logger.debug("hash 값: " + hash);
+
+        assertNotNull(hash);
+    }
+
+    @Test
+    @DisplayName("SHA512 matches 테스트")
+    void sha512Matches() {
+        File file = null;
+        try {
+            file = new File(resource.toURI());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        FileChecksum fc = new SHA512Checksum();
+        String checksum = fc.getChecksum(file);
+
+        logger.debug("checksum: " + checksum);
+        assertNotNull(checksum);
+
+        boolean isSameFile = fc.matches(file, checksum);
+        logger.debug("same file: " + isSameFile);
+
+        assertTrue(isSameFile);
+    }
 }
