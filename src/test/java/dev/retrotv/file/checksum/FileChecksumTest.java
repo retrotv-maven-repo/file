@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,7 +22,7 @@ public class FileChecksumTest {
     void crc32GetChecksum() {
         File file;
         try {
-            file = new File(resource.toURI());
+            file = new File(Objects.requireNonNull(resource).toURI());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -39,7 +40,7 @@ public class FileChecksumTest {
     void crc32Matches() {
         File file;
         try {
-            file = new File(resource.toURI());
+            file = new File(Objects.requireNonNull(resource).toURI());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -57,7 +58,7 @@ public class FileChecksumTest {
 
         File file2;
         try {
-            file2 = new File(resource2.toURI());
+            file2 = new File(Objects.requireNonNull(resource2).toURI());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -73,7 +74,7 @@ public class FileChecksumTest {
     void md5GetChecksum() {
         File file;
         try {
-            file = new File(resource.toURI());
+            file = new File(Objects.requireNonNull(resource).toURI());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -91,7 +92,7 @@ public class FileChecksumTest {
     void md5Matches() {
         File file;
         try {
-            file = new File(resource.toURI());
+            file = new File(Objects.requireNonNull(resource).toURI());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -109,7 +110,7 @@ public class FileChecksumTest {
 
         File file2;
         try {
-            file2 = new File(resource2.toURI());
+            file2 = new File(Objects.requireNonNull(resource2).toURI());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -125,7 +126,7 @@ public class FileChecksumTest {
     void sha1GetChecksum() {
         File file;
         try {
-            file = new File(resource.toURI());
+            file = new File(Objects.requireNonNull(resource).toURI());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -143,7 +144,7 @@ public class FileChecksumTest {
     void sha1Matches() {
         File file;
         try {
-            file = new File(resource.toURI());
+            file = new File(Objects.requireNonNull(resource).toURI());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -161,7 +162,7 @@ public class FileChecksumTest {
 
         File file2;
         try {
-            file2 = new File(resource2.toURI());
+            file2 = new File(Objects.requireNonNull(resource2).toURI());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -177,7 +178,7 @@ public class FileChecksumTest {
     void sha256GetChecksum() {
         File file;
         try {
-            file = new File(resource.toURI());
+            file = new File(Objects.requireNonNull(resource).toURI());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -195,7 +196,7 @@ public class FileChecksumTest {
     void sha256Matches() {
         File file;
         try {
-            file = new File(resource.toURI());
+            file = new File(Objects.requireNonNull(resource).toURI());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -213,7 +214,7 @@ public class FileChecksumTest {
 
         File file2;
         try {
-            file2 = new File(resource2.toURI());
+            file2 = new File(Objects.requireNonNull(resource2).toURI());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -229,7 +230,7 @@ public class FileChecksumTest {
     void sha512GetChecksum() {
         File file;
         try {
-            file = new File(resource.toURI());
+            file = new File(Objects.requireNonNull(resource).toURI());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -247,7 +248,7 @@ public class FileChecksumTest {
     void sha512Matches() {
         File file;
         try {
-            file = new File(resource.toURI());
+            file = new File(Objects.requireNonNull(resource).toURI());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -265,7 +266,7 @@ public class FileChecksumTest {
 
         File file2;
         try {
-            file2 = new File(resource2.toURI());
+            file2 = new File(Objects.requireNonNull(resource2).toURI());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
