@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Objects;
@@ -19,7 +20,7 @@ public class FileChecksumTest {
 
     @Test
     @DisplayName("CRC32 getChecksum 테스트")
-    void crc32GetChecksum() {
+    void crc32GetChecksum() throws IOException {
         File file;
         try {
             file = new File(Objects.requireNonNull(resource).toURI());
@@ -37,7 +38,7 @@ public class FileChecksumTest {
 
     @Test
     @DisplayName("CRC32 matches 테스트")
-    void crc32Matches() {
+    void crc32Matches() throws IOException {
         File file;
         try {
             file = new File(Objects.requireNonNull(resource).toURI());
@@ -71,7 +72,7 @@ public class FileChecksumTest {
 
     @Test
     @DisplayName("MD5 getChecksum 테스트")
-    void md5GetChecksum() {
+    void md5GetChecksum() throws IOException {
         File file;
         try {
             file = new File(Objects.requireNonNull(resource).toURI());
@@ -89,7 +90,7 @@ public class FileChecksumTest {
 
     @Test
     @DisplayName("MD5 matches 테스트")
-    void md5Matches() {
+    void md5Matches() throws IOException {
         File file;
         try {
             file = new File(Objects.requireNonNull(resource).toURI());
@@ -123,7 +124,7 @@ public class FileChecksumTest {
 
     @Test
     @DisplayName("SHA1 getChecksum 테스트")
-    void sha1GetChecksum() {
+    void sha1GetChecksum() throws IOException {
         File file;
         try {
             file = new File(Objects.requireNonNull(resource).toURI());
@@ -141,7 +142,7 @@ public class FileChecksumTest {
 
     @Test
     @DisplayName("SHA1 matches 테스트")
-    void sha1Matches() {
+    void sha1Matches() throws IOException {
         File file;
         try {
             file = new File(Objects.requireNonNull(resource).toURI());
@@ -175,7 +176,7 @@ public class FileChecksumTest {
 
     @Test
     @DisplayName("SHA256 getChecksum 테스트")
-    void sha256GetChecksum() {
+    void sha256GetChecksum() throws IOException {
         File file;
         try {
             file = new File(Objects.requireNonNull(resource).toURI());
@@ -193,7 +194,7 @@ public class FileChecksumTest {
 
     @Test
     @DisplayName("SHA256 matches 테스트")
-    void sha256Matches() {
+    void sha256Matches() throws IOException {
         File file;
         try {
             file = new File(Objects.requireNonNull(resource).toURI());
@@ -227,7 +228,7 @@ public class FileChecksumTest {
 
     @Test
     @DisplayName("SHA512 getChecksum 테스트")
-    void sha512GetChecksum() {
+    void sha512GetChecksum() throws IOException {
         File file;
         try {
             file = new File(Objects.requireNonNull(resource).toURI());
@@ -245,7 +246,7 @@ public class FileChecksumTest {
 
     @Test
     @DisplayName("SHA512 matches 테스트")
-    void sha512Matches() {
+    void sha512Matches() throws IOException {
         File file;
         try {
             file = new File(Objects.requireNonNull(resource).toURI());
