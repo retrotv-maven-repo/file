@@ -31,13 +31,20 @@ public interface FileChecksum {
             return false;
         }
 
-        if(checksum.equals(this.getChecksum(file))) {
-            return true;
-        }
+        String fileChecksum = this.getChecksum(file);
 
-        return false;
+        logger.debug("1st Checksum: {}", fileChecksum);
+        logger.debug("2nd Checksum: {}", checksum);
+
+        return checksum.equals(fileChecksum);
     }
 
+    /**
+     * 두 파일의 체크섬이 일치하는지 확인 합니다.
+     * @param file1 체크섬을 생성할 첫 번째 {@link java.io.File} 객체
+     * @param file2 체크섬을 생성할 두 번째 {@link java.io.File} 객체
+     * @return 두 체크섬 값이 일치할 경우 true, 일치하지 않을 경우 false 반환
+     */
     default boolean matches(File file1, File file2) {
         if(file1 == null || file2 == null) {
             return false;
@@ -46,15 +53,9 @@ public interface FileChecksum {
         String file1Checksum = this.getChecksum(file1);
         String file2Checksum = this.getChecksum(file2);
 
-        logger.debug(file1.getName());
-        logger.debug(file2.getName());
-        logger.debug(file1Checksum);
-        logger.debug(file2Checksum);
+        logger.debug("1st Checksum: {}", file1Checksum);
+        logger.debug("2nd Checksum: {}", file2Checksum);
 
-        if(file1Checksum.equals(file2Checksum)) {
-            return true;
-        }
-
-        return false;
+        return file1Checksum.equals(file2Checksum);
     }
 }
