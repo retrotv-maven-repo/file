@@ -1,12 +1,8 @@
 package dev.retrotv.file.checksum;
 
-import org.apache.commons.codec.binary.Hex;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
 import java.util.zip.CRC32;
 
@@ -25,8 +21,7 @@ public class CRC32Checksum implements FileChecksum {
             CRC32 crc32 = new CRC32();
             crc32.update(fileData);
 
-            return Optional.ofNullable(Long.toHexString(crc32.getValue()))
-                           .orElseThrow(() -> new NullPointerException("hash 값이 생성되지 않았습니다."));
+            return Long.toHexString(crc32.getValue());
         } catch (IOException e) {
             throw new IOException("파일을 읽어들이는 과정에서 예상치 못한 오류가 발생했습니다.");
         }
