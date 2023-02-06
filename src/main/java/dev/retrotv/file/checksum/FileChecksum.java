@@ -18,26 +18,33 @@ public interface FileChecksum {
      * 파일의 체크섬을 생성하고 반환합니다.
      * @param file 체크섬을 생성할 {@link java.io.File} 객체
      * @return 생성된 체크섬 값
+     * @throws IOException 파일을 읽어들이는 과정에서 문제가 생길 경우 발생
+     * @throws NullPointerException 매개변수 file 혹은 반환 값이 null인 경우 발생
      */
-    String getChecksum(File file) throws IOException;
+    String getChecksum(File file) throws IOException, NullPointerException;
 
     /**
      * 파일의 체크섬과 기존의 체크섬 값이 일치하는지 확인 합니다.
      * @param file 체크섬을 생성할 {@link java.io.File} 객체
      * @param checksum 비교할 체크섬 값
      * @return 두 체크섬 값이 일치할 경우 true, 일치하지 않을 경우 false 반환
+     * @throws IOException 파일을 읽어들이는 과정에서 문제가 생길 경우 발생
      */
     default boolean matches(File file, String checksum) throws IOException {
         if(file == null || checksum == null) {
             return false;
         }
 
-        String fileChecksum = this.getChecksum(file);
+        try {
+            String fileChecksum = this.getChecksum(file);
 
-        logger.debug("1st Checksum: {}", fileChecksum);
-        logger.debug("2nd Checksum: {}", checksum);
+            logger.debug("1st Checksum: {}", fileChecksum);
+            logger.debug("2nd Checksum: {}", checksum);
 
-        return checksum.equals(fileChecksum);
+            return checksum.equals(fileChecksum);
+        } catch (NullPointerException e) {
+            return false;
+        }
     }
 
     /**
@@ -45,18 +52,23 @@ public interface FileChecksum {
      * @param file1 체크섬을 생성할 첫 번째 {@link java.io.File} 객체
      * @param file2 체크섬을 생성할 두 번째 {@link java.io.File} 객체
      * @return 두 체크섬 값이 일치할 경우 true, 일치하지 않을 경우 false 반환
+     * @throws IOException 파일을 읽어들이는 과정에서 문제가 생길 경우 발생
      */
     default boolean matches(File file1, File file2) throws IOException {
         if(file1 == null || file2 == null) {
             return false;
         }
 
-        String file1Checksum = this.getChecksum(file1);
-        String file2Checksum = this.getChecksum(file2);
+        try {
+            String file1Checksum = this.getChecksum(file1);
+            String file2Checksum = this.getChecksum(file2);
 
-        logger.debug("1st Checksum: {}", file1Checksum);
-        logger.debug("2nd Checksum: {}", file2Checksum);
+            logger.debug("1st Checksum: {}", file1Checksum);
+            logger.debug("2nd Checksum: {}", file2Checksum);
 
-        return file1Checksum.equals(file2Checksum);
+            return file1Checksum.equals(file2Checksum);
+        } catch (NullPointerException e) {
+            return false;
+        }
     }
 }

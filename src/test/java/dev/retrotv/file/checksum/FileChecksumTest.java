@@ -37,6 +37,17 @@ public class FileChecksumTest {
     }
 
     @Test
+    @DisplayName("CRC32 getChecksum file이 null인 경우 테스트")
+    void crc32GetChecksumFileIsNull() {
+        FileChecksum fc = new CRC32Checksum();
+        Throwable throwable = assertThrows(NullPointerException.class, () -> {
+            fc.getChecksum(null);
+        });
+
+        assertEquals("파일 객체가 null 입니다.", throwable.getMessage());
+    }
+
+    @Test
     @DisplayName("CRC32 matches 테스트")
     void crc32Matches() throws IOException {
         File file;
