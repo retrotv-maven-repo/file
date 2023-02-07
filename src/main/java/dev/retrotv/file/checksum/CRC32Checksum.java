@@ -1,5 +1,6 @@
 package dev.retrotv.file.checksum;
 
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -16,8 +17,10 @@ public class CRC32Checksum implements FileChecksum {
     public String getChecksum(File file) throws IOException, NullPointerException {
         Optional.ofNullable(file).orElseThrow(() -> new NullPointerException("파일 객체가 null 입니다."));
 
-        try (FileInputStream fis = new FileInputStream(file)) {
-            byte[] fileData = fis.readAllBytes();
+        try (DataInputStream dis = new DataInputStream(new FileInputStream(file))) {
+            byte[] fileData = new byte[(int) file.length()];
+            dis.readFully(fileData);
+
             CRC32 crc32 = new CRC32();
             crc32.update(fileData);
 

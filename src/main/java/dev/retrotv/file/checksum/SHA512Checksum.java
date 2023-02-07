@@ -2,6 +2,7 @@ package dev.retrotv.file.checksum;
 
 import org.apache.commons.codec.binary.Hex;
 
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -20,8 +21,10 @@ public class SHA512Checksum implements FileChecksum {
         String hash = null;
         Optional.ofNullable(file).orElseThrow(() -> new NullPointerException("파일 객체가 null 입니다."));
 
-        try (FileInputStream fis = new FileInputStream(file)) {
-            byte[] fileData = fis.readAllBytes();
+        try (DataInputStream dis = new DataInputStream(new FileInputStream(file))) {
+            byte[] fileData = new byte[(int) file.length()];
+            dis.readFully(fileData);
+
             MessageDigest md = MessageDigest.getInstance("SHA-512");
             md.update(fileData);
             hash = Hex.encodeHexString(md.digest());

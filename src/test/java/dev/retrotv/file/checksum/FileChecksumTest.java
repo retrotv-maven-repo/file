@@ -98,6 +98,15 @@ public class FileChecksumTest {
     }
 
     @Test
+    @DisplayName("MD5 getChecksum file이 null인 경우 테스트")
+    void md5GetChecksumFileIsNull() {
+        FileChecksum fc = new MD5Checksum();
+        Throwable throwable = assertThrows(NullPointerException.class, () -> fc.getChecksum(null));
+
+        assertEquals("파일 객체가 null 입니다.", throwable.getMessage());
+    }
+
+    @Test
     @DisplayName("MD5 matches 테스트")
     void md5Matches() throws IOException {
         File file;
@@ -147,6 +156,15 @@ public class FileChecksumTest {
         logger.debug("hash 값: " + hash);
 
         assertNotNull(hash);
+    }
+
+    @Test
+    @DisplayName("SHA1 getChecksum file이 null인 경우 테스트")
+    void sha1GetChecksumFileIsNull() {
+        FileChecksum fc = new SHA1Checksum();
+        Throwable throwable = assertThrows(NullPointerException.class, () -> fc.getChecksum(null));
+
+        assertEquals("파일 객체가 null 입니다.", throwable.getMessage());
     }
 
     @Test
@@ -202,6 +220,15 @@ public class FileChecksumTest {
     }
 
     @Test
+    @DisplayName("SHA256 getChecksum file이 null인 경우 테스트")
+    void sha256GetChecksumFileIsNull() {
+        FileChecksum fc = new SHA256Checksum();
+        Throwable throwable = assertThrows(NullPointerException.class, () -> fc.getChecksum(null));
+
+        assertEquals("파일 객체가 null 입니다.", throwable.getMessage());
+    }
+
+    @Test
     @DisplayName("SHA256 matches 테스트")
     void sha256Matches() throws IOException {
         File file;
@@ -251,6 +278,15 @@ public class FileChecksumTest {
         logger.debug("hash 값: " + hash);
 
         assertNotNull(hash);
+    }
+
+    @Test
+    @DisplayName("SHA512 getChecksum file이 null인 경우 테스트")
+    void sha512GetChecksumFileIsNull() {
+        FileChecksum fc = new SHA512Checksum();
+        Throwable throwable = assertThrows(NullPointerException.class, () -> fc.getChecksum(null));
+
+        assertEquals("파일 객체가 null 입니다.", throwable.getMessage());
     }
 
     @Test
