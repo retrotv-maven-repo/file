@@ -21,7 +21,7 @@ public interface FileChecksum {
      * @throws IOException 파일을 읽어들이는 과정에서 문제가 생길 경우 발생
      * @throws NullPointerException 매개변수 file 혹은 반환 값이 null인 경우 발생
      */
-    String getChecksum(File file) throws IOException, NullPointerException;
+    String hash(File file) throws IOException, NullPointerException;
 
     /**
      * 파일의 체크섬과 기존의 체크섬 값이 일치하는지 확인 합니다.
@@ -36,7 +36,7 @@ public interface FileChecksum {
         }
 
         try {
-            String fileChecksum = this.getChecksum(file);
+            String fileChecksum = this.hash(file);
 
             logger.debug("1st Checksum: {}", fileChecksum);
             logger.debug("2nd Checksum: {}", checksum);
@@ -60,8 +60,8 @@ public interface FileChecksum {
         }
 
         try {
-            String file1Checksum = this.getChecksum(file1);
-            String file2Checksum = this.getChecksum(file2);
+            String file1Checksum = this.hash(file1);
+            String file2Checksum = this.hash(file2);
 
             logger.debug("1st Checksum: {}", file1Checksum);
             logger.debug("2nd Checksum: {}", file2Checksum);

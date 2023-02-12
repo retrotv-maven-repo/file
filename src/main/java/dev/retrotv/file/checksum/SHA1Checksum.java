@@ -17,7 +17,7 @@ import java.util.Optional;
 public class SHA1Checksum implements FileChecksum {
 
     @Override
-    public String getChecksum(File file) throws IOException, NullPointerException {
+    public String hash(File file) throws IOException, NullPointerException {
         String hash = null;
         Optional.ofNullable(file).orElseThrow(() -> new NullPointerException("파일 객체가 null 입니다."));
 
