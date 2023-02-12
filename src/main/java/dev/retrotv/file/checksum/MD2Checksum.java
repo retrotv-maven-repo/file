@@ -14,7 +14,7 @@ import java.util.Optional;
  * MD5 알고리즘을 사용하는 {@link FileChecksum} 인터페이스 구현체입니다.
  * @author yjj8353
  */
-public class MD5Checksum implements FileChecksum {
+public class MD2Checksum implements FileChecksum {
 
     @Override
     public String hash(File file) throws IOException, NullPointerException {
@@ -25,7 +25,7 @@ public class MD5Checksum implements FileChecksum {
             byte[] fileData = new byte[(int) file.length()];
             dis.readFully(fileData);
 
-            MessageDigest md = MessageDigest.getInstance("MD5");
+            MessageDigest md = MessageDigest.getInstance("MD2");
             md.update(fileData);
             hash = Hex.encodeHexString(md.digest());
         } catch (IOException e) {

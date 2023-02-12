@@ -14,7 +14,7 @@ import java.util.Optional;
  * SHA-512 알고리즘을 사용하는 {@link FileChecksum} 인터페이스 구현체입니다.
  * @author yjj8353
  */
-public class SHA512Checksum implements FileChecksum {
+public class SHA384Checksum implements FileChecksum {
 
     @Override
     public String hash(File file) throws IOException, NullPointerException {
@@ -25,7 +25,7 @@ public class SHA512Checksum implements FileChecksum {
             byte[] fileData = new byte[(int) file.length()];
             dis.readFully(fileData);
 
-            MessageDigest md = MessageDigest.getInstance("SHA-512");
+            MessageDigest md = MessageDigest.getInstance("SHA-384");
             md.update(fileData);
             hash = Hex.encodeHexString(md.digest());
         } catch (IOException e) {
