@@ -12,8 +12,6 @@ import java.io.IOException;
  */
 public interface FileChecksum {
 
-    Logger logger = LoggerFactory.getLogger(FileChecksum.class);
-
     /**
      * 파일의 체크섬을 생성하고 반환합니다.
      * @param file 체크섬을 생성할 {@link java.io.File} 객체
@@ -37,10 +35,6 @@ public interface FileChecksum {
 
         try {
             String fileChecksum = this.hash(file);
-
-            logger.debug("1st Checksum: {}", fileChecksum);
-            logger.debug("2nd Checksum: {}", checksum);
-
             return checksum.equals(fileChecksum);
         } catch (NullPointerException e) {
             return false;
@@ -62,10 +56,6 @@ public interface FileChecksum {
         try {
             String file1Checksum = this.hash(file1);
             String file2Checksum = this.hash(file2);
-
-            logger.debug("1st Checksum: {}", file1Checksum);
-            logger.debug("2nd Checksum: {}", file2Checksum);
-
             return file1Checksum.equals(file2Checksum);
         } catch (NullPointerException e) {
             return false;
