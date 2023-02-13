@@ -23,7 +23,7 @@ public class SHA384ChecksumTest extends FileChecksumTest {
             throw new RuntimeException(e);
         }
 
-        FileChecksum fc = new SHA512Checksum();
+        FileChecksum fc = new SHA384Checksum();
         String hash = fc.hash(file);
 
         logger.debug("hash 값: " + hash);
