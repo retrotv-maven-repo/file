@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Optional;
 import java.util.zip.CRC32;
 
@@ -17,7 +18,7 @@ public class CRC32Checksum implements FileChecksum {
     public String hash(File file) throws IOException, NullPointerException {
         Optional.ofNullable(file).orElseThrow(() -> new NullPointerException("파일 객체가 null 입니다."));
 
-        try (DataInputStream dis = new DataInputStream(new FileInputStream(file))) {
+        try (DataInputStream dis = new DataInputStream(Files.newInputStream(file.toPath()))) {
             byte[] fileData = new byte[(int) file.length()];
             dis.readFully(fileData);
 

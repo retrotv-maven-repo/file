@@ -30,6 +30,6 @@ public class SHA1Checksum implements FileChecksum {
             throw new IOException("파일을 읽어들이는 과정에서 예상치 못한 오류가 발생했습니다.");
         }
 
-        return Optional.ofNullable(hash).orElseThrow(() -> new NullPointerException("hash 값이 생성되지 않았습니다."));
+        return Optional.of(hash).orElseThrow(() -> new NullPointerException("hash 값이 생성되지 않았습니다."));
     }
 }
