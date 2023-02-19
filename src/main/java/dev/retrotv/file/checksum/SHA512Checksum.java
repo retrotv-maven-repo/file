@@ -25,7 +25,7 @@ public class SHA512Checksum implements FileChecksum {
             dis.readFully(fileData);
 
             SHA512 sha = new SHA512();
-            hash = DatatypeConverter.printHexBinary(sha.encrypt(fileData));
+            hash = DatatypeConverter.printHexBinary(sha.encrypt(fileData)).toLowerCase();
         } catch (IOException e) {
             throw new IOException("파일을 읽어들이는 과정에서 예상치 못한 오류가 발생했습니다.");
         }
