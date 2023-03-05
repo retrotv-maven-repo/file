@@ -1,5 +1,6 @@
 package dev.retrotv.file.checksum;
 
+import dev.retrotv.file.checksum.sha.SHA384Checksum;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

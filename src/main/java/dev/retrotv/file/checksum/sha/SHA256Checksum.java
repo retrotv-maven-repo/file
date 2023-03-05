@@ -1,6 +1,7 @@
-package dev.retrotv.file.checksum;
+package dev.retrotv.file.checksum.sha;
 
-import dev.retrotv.crypt.sha.SHA384;
+import dev.retrotv.crypt.owe.sha.SHA256;
+import dev.retrotv.file.checksum.FileChecksum;
 
 import javax.xml.bind.DatatypeConverter;
 import java.io.DataInputStream;
@@ -10,10 +11,10 @@ import java.nio.file.Files;
 import java.util.Optional;
 
 /**
- * SHA-512 알고리즘을 사용하는 {@link FileChecksum} 인터페이스 구현체입니다.
+ * SHA-256 알고리즘을 사용하는 {@link FileChecksum} 인터페이스 구현체입니다.
  * @author yjj8353
  */
-public class SHA384Checksum implements FileChecksum {
+public class SHA256Checksum implements FileChecksum {
 
     @Override
     public String hash(File file) throws IOException, NullPointerException {
@@ -24,7 +25,7 @@ public class SHA384Checksum implements FileChecksum {
             byte[] fileData = new byte[(int) file.length()];
             dis.readFully(fileData);
 
-            SHA384 sha = new SHA384();
+            SHA256 sha = new SHA256();
             hash = DatatypeConverter.printHexBinary(sha.encrypt(fileData)).toLowerCase();
         } catch (IOException e) {
             throw new IOException("파일을 읽어들이는 과정에서 예상치 못한 오류가 발생했습니다.");
