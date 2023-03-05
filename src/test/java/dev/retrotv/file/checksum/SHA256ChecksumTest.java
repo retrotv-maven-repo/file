@@ -24,7 +24,7 @@ public class SHA256ChecksumTest extends FileChecksumTest {
         }
 
         FileChecksum fc = new SHA256Checksum();
-        String hash = fc.hash(file);
+        String hash = fc.checksum(file);
 
         logger.debug("hash 값: " + hash);
 
@@ -35,7 +35,7 @@ public class SHA256ChecksumTest extends FileChecksumTest {
     @DisplayName("SHA256 hash file이 null인 경우 테스트")
     void sha256HashFileIsNull() {
         FileChecksum fc = new SHA256Checksum();
-        Throwable throwable = assertThrows(NullPointerException.class, () -> fc.hash(null));
+        Throwable throwable = assertThrows(NullPointerException.class, () -> fc.checksum(null));
 
         assertEquals("파일 객체가 null 입니다.", throwable.getMessage());
     }
@@ -51,7 +51,7 @@ public class SHA256ChecksumTest extends FileChecksumTest {
         }
 
         FileChecksum fc = new SHA256Checksum();
-        String checksum = fc.hash(file);
+        String checksum = fc.checksum(file);
 
         logger.debug("checksum: " + checksum);
         assertNotNull(checksum);

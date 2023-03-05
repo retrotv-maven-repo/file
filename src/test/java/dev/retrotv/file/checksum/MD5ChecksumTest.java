@@ -24,7 +24,7 @@ public class MD5ChecksumTest extends FileChecksumTest {
         }
 
         FileChecksum fc = new MD5Checksum();
-        String hash = fc.hash(file);
+        String hash = fc.checksum(file);
 
         logger.debug("hash 값: " + hash);
 
@@ -35,7 +35,7 @@ public class MD5ChecksumTest extends FileChecksumTest {
     @DisplayName("MD5 hash file이 null인 경우 테스트")
     void md5HashFileIsNull() {
         FileChecksum fc = new MD5Checksum();
-        Throwable throwable = assertThrows(NullPointerException.class, () -> fc.hash(null));
+        Throwable throwable = assertThrows(NullPointerException.class, () -> fc.checksum(null));
 
         assertEquals("파일 객체가 null 입니다.", throwable.getMessage());
     }
@@ -51,7 +51,7 @@ public class MD5ChecksumTest extends FileChecksumTest {
         }
 
         FileChecksum fc = new MD5Checksum();
-        String checksum = fc.hash(file);
+        String checksum = fc.checksum(file);
 
         logger.debug("checksum: " + checksum);
         assertNotNull(checksum);
